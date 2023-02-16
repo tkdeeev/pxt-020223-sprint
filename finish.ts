@@ -40,13 +40,6 @@ radio.onReceivedString((str: string) => {
 
 }
 
-let awaitRun = function (light : number) {
-    while (Math.abs(input.lightLevel() - light) < 30) { console.log(input.lightLevel()) }
-    music.playTone(Note.D, music.beat(BeatFraction.Whole))
-    console.log("fin")
-    radio.sendString("finish")
-}
-
 radio.onReceivedValue((str:string, num:number) => {
     if (str = "show") {
         basic.showNumber(num, 300)
