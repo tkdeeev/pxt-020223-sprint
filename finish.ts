@@ -1,18 +1,16 @@
 //finish
+
 function finish () {
+    console.log("ll")
 music.playTone(Note.C, music.beat(BeatFraction.Whole))
-    
-music.setVolume(255)
-radio.setGroup(76)
-radio.setTransmitPower(7)
-radio.setFrequencyBand(76)
-radio.setTransmitSerialNumber(true)
+
 
 let lgl = 0
-radio.onReceivedValue((str: string, num: number) => {
-    console.log("ll")
+radio.onReceivedString((str: string) => {
+    console.log(str)
+    music.playTone(Note.E, music.beat(BeatFraction.Whole))
     if (str == "callig") {
-        lgl = getCalibrate(5000)
+        lgl = getCalibrate(3000)
     } else if (str == "start") {
         awaitRun(lgl)
     }
@@ -21,6 +19,7 @@ radio.onReceivedValue((str: string, num: number) => {
 }
 
 let awaitRun = function (light : number) {
-    while (Math.abs(input.lightLevel() - light) < 50) {}
-    radio.sendValue("finish", 0)
+    while (Math.abs(input.lightLevel() - light) < 50) { }
+    music.playTone(Note.D, music.beat(BeatFraction.Whole))
+    radio.sendString("finish")
 }

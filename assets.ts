@@ -9,8 +9,8 @@
         }
     }
     function calibrate () : number {
-        radio.sendValue("callig", 0)
-        return getCalibrate(5000)
+        radio.sendString("callig")
+        return getCalibrate(3000)
     }
     function getCalibrate(time: number): number {
         //Assets.loading(5000)
@@ -41,5 +41,9 @@ function startCount() {
 
     basic.showIcon(IconNames.Target)
     music.playTone(Note.C5, music.beat(BeatFraction.Whole))
+
+    radio.sendString("start")
+
+    return control.millis()
 }
 
