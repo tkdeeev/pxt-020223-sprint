@@ -18,8 +18,3 @@ radio.onReceivedString((str: string) => {
 
 }
 
-let awaitRun = function (light : number) {
-    while (Math.abs(input.lightLevel() - light) < 50) { }
-    music.playTone(Note.D, music.beat(BeatFraction.Whole))
-    radio.sendString("finish")
-}

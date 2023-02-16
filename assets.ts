@@ -9,11 +9,13 @@
         }
     }
     function calibrate () : number {
+        console.log("callig")
         radio.sendString("callig")
         return getCalibrate(3000)
     }
     function getCalibrate(time: number): number {
         //Assets.loading(5000)
+        console.log("cal")
         let calibrateSum = 0
         for (let i = 0; i < time; i += 20) {
             basic.pause(20)
@@ -44,6 +46,12 @@ function startCount() {
 
     radio.sendString("start")
 
+    return control.millis()
+}
+let awaitRun = function (light: number) {
+    while (Math.abs(input.lightLevel() - light) < 30) { console.log(input.lightLevel()) }
+    music.playTone(Note.D, music.beat(BeatFraction.Whole))
+    radio.sendString("finish")
     return control.millis()
 }
 
